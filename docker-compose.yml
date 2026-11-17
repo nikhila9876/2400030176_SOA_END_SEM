@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  student-management-soa:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: student-soa:latest
+    container_name: student-soa-app
+    ports:
+      - "8081:8081"
+      - "8082:8082"
+      - "8083:8083"
+    restart: unless-stopped

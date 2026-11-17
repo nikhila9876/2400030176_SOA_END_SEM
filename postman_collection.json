@@ -1,0 +1,219 @@
+{
+  "info": {
+    "name": "Student Management SOA Microservices",
+    "description": "Postman collection to test Student, Course, and Result Microservices running in ONE Docker container.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Student Service (8081)",
+      "item": [
+        {
+          "name": "Get All Students",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/api/students",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "Get Student By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/api/students/S101",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "students", "S101"]
+            }
+          }
+        },
+        {
+          "name": "Add Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"S104\",\n  \"name\": \"David Miller\",\n  \"email\": \"david.miller@example.com\",\n  \"department\": \"Cybersecurity\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8081/api/students",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "Delete Student",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/api/students/S104",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "students", "S104"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Course Service (8082)",
+      "item": [
+        {
+          "name": "Get All Courses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/courses",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["api", "courses"]
+            }
+          }
+        },
+        {
+          "name": "Get Course By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/courses/C101",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["api", "courses", "C101"]
+            }
+          }
+        },
+        {
+          "name": "Add Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"C105\",\n  \"name\": \"Cloud Computing & DevOps\",\n  \"code\": \"CS501\",\n  \"credits\": 3,\n  \"instructor\": \"Dr. Werner Vogels\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/courses",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["api", "courses"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Result Service (8083)",
+      "item": [
+        {
+          "name": "Get All Marks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8083/api/results/marks",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8083",
+              "path": ["api", "results", "marks"]
+            }
+          }
+        },
+        {
+          "name": "Add Student Marks",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": \"S102\",\n  \"courseId\": \"C102\",\n  \"marksObtained\": 89.0,\n  \"maxMarks\": 100.0\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8083/api/results/marks",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8083",
+              "path": ["api", "results", "marks"]
+            }
+          }
+        },
+        {
+          "name": "Get Consolidated Student Result (SOA)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8083/api/results/student/S101",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8083",
+              "path": ["api", "results", "student", "S101"]
+            }
+          }
+        },
+        {
+          "name": "Get Student Result Summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8083/api/results/student/S101/summary",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8083",
+              "path": ["api", "results", "student", "S101", "summary"]
+            }
+          }
+        },
+        {
+          "name": "Calculate Total & Average Marks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8083/api/results/calculate/S101",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8083",
+              "path": ["api", "results", "calculate", "S101"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
